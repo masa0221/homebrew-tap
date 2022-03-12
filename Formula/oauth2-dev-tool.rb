@@ -5,6 +5,9 @@ class Oauth2DevTool < Formula
   sha256 "ee47bc94654e3b7b4ef1d32227c6e8c285392184a23d03bbb9f91972a3383c61"
   license "MIT"
 
+  depends_on "jq"
+  depends_on "nkf"
+
   def install
     bin.install "oauth"
   end
