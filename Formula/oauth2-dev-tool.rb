@@ -1,6 +1,3 @@
-# Documentation: https://docs.brew.sh/Formula-Cookbook
-#                https://rubydoc.brew.sh/Formula
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 class Oauth2DevTool < Formula
   desc "This is a tool for OAuth 2.0 development"
   homepage "https://github.com/masa0221/oauth2-dev-tool"
