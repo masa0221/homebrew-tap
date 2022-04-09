@@ -5,21 +5,21 @@
 class Jclockedio < Formula
   desc "This is a things for clocked in/out to Jobcan, then it results are send to Chatwork."
   homepage "https://github.com/masa0221/jclockedio"
-  version "0.2.5"
+  version "0.2.6"
   license "MIT"
 
   on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.5/jclockedio_darwin_amd64.zip"
-      sha256 "898d964976d6474280243b4d0a7876c97fa0019401f761621fb44828828a75e9"
+    if Hardware::CPU.arm?
+      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.6/jclockedio_darwin_arm64.zip"
+      sha256 "e6e6b57c064b999db97c395638af71760791481f4b447a28975d6f6c7f89743f"
 
       def install
         bin.install "jclockedio"
       end
     end
-    if Hardware::CPU.arm?
-      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.5/jclockedio_darwin_arm64.zip"
-      sha256 "391128a281fe99982ab0b793e324395d4437e99aed9830cb2950cfb481934ebc"
+    if Hardware::CPU.intel?
+      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.6/jclockedio_darwin_amd64.zip"
+      sha256 "ab33107d8b8e28b0006c5bf84b039ab8e47d97061e60cd4ce9664717e58debd3"
 
       def install
         bin.install "jclockedio"
@@ -28,17 +28,17 @@ class Jclockedio < Formula
   end
 
   on_linux do
-    if Hardware::CPU.intel?
-      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.5/jclockedio_linux_amd64.zip"
-      sha256 "a5d2d27507121e0e63b2e3d84e921d1b9ec5f53559171543a754eaf9edbb79a2"
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.6/jclockedio_linux_arm64.zip"
+      sha256 "0793de03d6e4e0637581e715939aa891d16bb3aeacf3d48c7ccb6b5e159b435d"
 
       def install
         bin.install "jclockedio"
       end
     end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.5/jclockedio_linux_arm64.zip"
-      sha256 "73b598644a8c8a0aaf8171bb96c700a4d4050b20f0c0d7808a7531dddd500134"
+    if Hardware::CPU.intel?
+      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.6/jclockedio_linux_amd64.zip"
+      sha256 "8bba0cc6c726211f4028573c75efa4872950369166e2971b4003302cdfa80da3"
 
       def install
         bin.install "jclockedio"
@@ -46,5 +46,5 @@ class Jclockedio < Formula
     end
   end
 
-  depends_on "chromedriver"
+  depends_on cask: "chromedriver"
 end
