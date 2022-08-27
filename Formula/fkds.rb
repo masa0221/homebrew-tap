@@ -15,7 +15,7 @@ class Fkds < Formula
       ＿⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_＿
       ＞　What! I can't believe it!　＜
       ￣Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^￣
-      EOS
+    EOS
     assert_match expected, output
   end
 end
