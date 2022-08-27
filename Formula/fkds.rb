@@ -8,4 +8,14 @@ class Fkds < Formula
   def install
     bin.install "fkds"
   end
+
+  test do
+    output = shell_output("#{bin}/fkds \"What! I can't believe it\!\"", 0)
+    expected = <<'EOS'
+＿⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_＿
+＞　What! I can't believe it!　＜
+￣Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^￣
+EOS
+    assert_match expected, output
+  end
 end
