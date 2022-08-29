@@ -1,8 +1,8 @@
 class Fkds < Formula
   desc "This is a things for generating speech bubble"
   homepage "https://github.com/masa0221/fkds"
-  url "https://github.com/masa0221/fkds/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "dbd4804bbba1961d89d6b8c4bbddead6f912548c35a980682a694edf030a1ae3"
+  url "https://github.com/masa0221/fkds/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "70aa4aac6256bca04b9fb7bf2159897e23cf9e45cf24704f5a18a2e124d44e09"
   license "MIT"
 
   def install
