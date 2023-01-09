@@ -5,21 +5,21 @@
 class Jclockedio < Formula
   desc "This is a things for clocked in/out to Jobcan"
   homepage "https://github.com/masa0221/jclockedio"
-  version "0.2.12"
+  version "0.2.13"
   license "MIT"
 
   on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.12/jclockedio_darwin_amd64.zip"
-      sha256 "32a6f043a48ef9fb911f1b4e5f6faa4ee8df54cb8605303d2f1b849e1f741367"
+    if Hardware::CPU.arm?
+      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.13/jclockedio_darwin_arm64.zip"
+      sha256 "6b740a0b5c6922c0087c37cb41d71290acffd8c73d1bb32425524b01a2678bb7"
 
       def install
         bin.install "jclockedio"
       end
     end
-    if Hardware::CPU.arm?
-      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.12/jclockedio_darwin_arm64.zip"
-      sha256 "60caa4af9ac5e7026ed6ad5ef4a27ccfc24ff789492ae5165f821cf7a39b48a4"
+    if Hardware::CPU.intel?
+      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.13/jclockedio_darwin_amd64.zip"
+      sha256 "d187a91eff4663e0132ea38b83ec404e0dd09489b206e51c8314383e1a28d767"
 
       def install
         bin.install "jclockedio"
@@ -29,16 +29,16 @@ class Jclockedio < Formula
 
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.12/jclockedio_linux_arm64.zip"
-      sha256 "42b8ab2880baabc6c7e0572153a0f47646792398e83783d7d61edcc77b53d7f2"
+      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.13/jclockedio_linux_arm64.zip"
+      sha256 "89d1526f078def0644902525f383a03a347462f409aa58127140a33b24ff21ac"
 
       def install
         bin.install "jclockedio"
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.12/jclockedio_linux_amd64.zip"
-      sha256 "bd572633a22ea1975aa62ed709e522d0b5cf8a60a817a28f61efc49808d35372"
+      url "https://github.com/masa0221/jclockedio/releases/download/v0.2.13/jclockedio_linux_amd64.zip"
+      sha256 "cd8188e17aaf6428344a65a57a71fe91bb5bdf963b6e5795e09522ed8e1d8c25"
 
       def install
         bin.install "jclockedio"
