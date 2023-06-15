@@ -10,10 +10,10 @@ class Fkds < Formula
   end
 
   test do
-    output = shell_output("#{bin}/fkds \"What! I can't believe it\!\"")
+    output = shell_output("#{bin}/fkds \"What! I can't believe it\"")
     expected = <<~EOS
       ＿⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_⅄_＿
-      ＞　What! I can't believe it!　＜
+      ＞　What! I can't believe it　＜
       ￣Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^Y^￣
     EOS
     assert_match expected, output
