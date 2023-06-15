@@ -6,6 +6,6 @@ class EksAdmin < Formula
   license "MIT"
 
   def install
-    bin.install "fkds"
+    bin.install "eks-admin"
   end
 end
