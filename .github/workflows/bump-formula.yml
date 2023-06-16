@@ -1,0 +1,16 @@
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  homebrew-bump-formula:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Homebrew formula
+        uses: dawidd6/action-homebrew-bump-formula@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tap: masa0221/tap
+          force: true
+          livecheck: true
