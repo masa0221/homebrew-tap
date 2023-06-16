@@ -1,3 +1,4 @@
+name: brew livecheck and bump-formula-pr
 on:
   workflow_dispatch:
   schedule:
