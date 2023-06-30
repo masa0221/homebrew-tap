@@ -1,8 +1,8 @@
 class EksAdmin < Formula
   desc "This tool is for operating EKS cluster"
   homepage "https://github.com/masa0221/eks-operations"
-  url "https://github.com/masa0221/eks-operations/releases/download/v0.1.0/eks-admin"
-  sha256 "ed7f098634491679e76d7688fd5c176d42914c54b1f978a62ebc8b0156789892"
+  url "https://github.com/masa0221/eks-operations/releases/download/v0.2.0/eks-admin"
+  sha256 "6ed538a5ccb2ddd6e5a1677ef82bf41e17a2f4fac38c2c98098e4813f8fa506b"
   license "MIT"
 
   def install
