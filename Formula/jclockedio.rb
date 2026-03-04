@@ -13,7 +13,7 @@ class Jclockedio < Formula
       url "https://github.com/masa0221/jclockedio/releases/download/v0.3.0/jclockedio_darwin_arm64.zip"
       sha256 "5dfe006d61734304b3fa566106fbab4603e40d0b53d9ea14c71e2579bb93770a"
 
-      def install
+      define_method :install do
         bin.install "jclockedio"
       end
     end
@@ -21,7 +21,7 @@ class Jclockedio < Formula
       url "https://github.com/masa0221/jclockedio/releases/download/v0.3.0/jclockedio_darwin_amd64.zip"
       sha256 "4e7d95cd21e01f88211b9900a5675a92cc7264b6f1ca3814f6eeccedc4d650c5"
 
-      def install
+      define_method :install do
         bin.install "jclockedio"
       end
     end
@@ -32,7 +32,7 @@ class Jclockedio < Formula
       url "https://github.com/masa0221/jclockedio/releases/download/v0.3.0/jclockedio_linux_arm64.zip"
       sha256 "e09eb317b574babbd1ea5be142d6acea296c40b7ce72862c9873acb049a27ab8"
 
-      def install
+      define_method :install do
         bin.install "jclockedio"
       end
     end
@@ -40,7 +40,7 @@ class Jclockedio < Formula
       url "https://github.com/masa0221/jclockedio/releases/download/v0.3.0/jclockedio_linux_amd64.zip"
       sha256 "4d6eba3cfea344266d28d00019d8409cbdeeb2beb533c80f51be96a20b05fa97"
 
-      def install
+      define_method :install do
         bin.install "jclockedio"
       end
     end
