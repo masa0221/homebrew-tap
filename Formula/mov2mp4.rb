@@ -12,6 +12,6 @@ class Mov2mp4 < Formula
   end
 
   test do
-    assert_match "Usage:", shell_output("#{bin}/mov2mp4 --help", 0)
+    assert_match "Usage:", shell_output("#{bin}/mov2mp4 --help")
   end
 end
