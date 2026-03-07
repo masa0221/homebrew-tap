@@ -1,8 +1,8 @@
 class Mov2mp4 < Formula
   desc "Shell script to convert video files (.mov) to MP4"
   homepage "https://github.com/masa0221/mov2mp4"
-  url "https://github.com/masa0221/mov2mp4/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "826facea45ecf34920e998a447e26b275136b751e272b9302c8d0f12501941af"
+  url "https://github.com/masa0221/mov2mp4/archive/refs/tags/v0.2.2.tar.gz"
+  sha256 "25699a9387f58757aa5777b3b46b556d8e852f0274a6faf2c4bcce8b6fb67686"
   license "Apache-2.0"
 
   depends_on "ffmpeg"
