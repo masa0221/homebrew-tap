@@ -1,0 +1,14 @@
+{
+  "mov2mp4": {
+    "repo": "masa0221/mov2mp4",
+    "url_type": "archive"
+  },
+  "oauth2-dev-tool": {
+    "repo": "masa0221/oauth2-dev-tool",
+    "url_type": "archive"
+  },
+  "fkds": {
+    "repo": "masa0221/fkds",
+    "url_type": "archive"
+  }
+}

@@ -1,0 +1,114 @@
+name: Bump formula
+
+on:
+  repository_dispatch:
+    types: [bump-formula]
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout tap
+        uses: actions/checkout@v4
+
+      - name: Parse payload
+        id: payload
+        run: |
+          FORMULA="${{ github.event.client_payload.formula }}"
+          VERSION="${{ github.event.client_payload.version }}"
+          if [ -z "$FORMULA" ] || [ -z "$VERSION" ]; then
+            echo "Error: formula and version are required in client_payload"
+            exit 1
+          fi
+          echo "formula=${FORMULA}" >> $GITHUB_OUTPUT
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Formula: ${FORMULA}, Version: ${VERSION}"
+
+      - name: Load formula config
+        id: config
+        run: |
+          FORMULA="${{ steps.payload.outputs.formula }}"
+          REPO=$(jq -r --arg f "$FORMULA" '.[$f].repo // empty' .github/bump-formulae.json)
+          URL_TYPE=$(jq -r --arg f "$FORMULA" '.[$f].url_type // "archive"' .github/bump-formulae.json)
+          if [ -z "$REPO" ]; then
+            echo "Error: formula '${FORMULA}' not found in .github/bump-formulae.json"
+            exit 1
+          fi
+          echo "repo=${REPO}" >> $GITHUB_OUTPUT
+          echo "url_type=${URL_TYPE}" >> $GITHUB_OUTPUT
+          echo "Repo: ${REPO}, URL type: ${URL_TYPE}"
+
+      - name: Get sha256 and update formula
+        id: update
+        run: |
+          FORMULA="${{ steps.payload.outputs.formula }}"
+          VERSION="${{ steps.payload.outputs.version }}"
+          REPO="${{ steps.config.outputs.repo }}"
+          URL_TYPE="${{ steps.config.outputs.url_type }}"
+          FORMULA_FILE="Formula/${FORMULA}.rb"
+
+          if [ ! -f "$FORMULA_FILE" ]; then
+            echo "Error: Formula file ${FORMULA_FILE} not found"
+            exit 1
+          fi
+
+          if [ "$URL_TYPE" = "archive" ]; then
+            URL="https://github.com/${REPO}/archive/refs/tags/${VERSION}.tar.gz"
+            echo "Fetching sha256 for ${URL}"
+            SHA=$(curl -sL "$URL" | shasum -a 256 | awk '{print $1}')
+          else
+            echo "Error: url_type '${URL_TYPE}' not supported"
+            exit 1
+          fi
+
+          echo "New URL: ${URL}"
+          echo "New sha256: ${SHA}"
+
+          # Backup and update
+          sed -i.bak \
+            -e "s|url \"https://github.com/${REPO}/archive/refs/tags/[^\"]*\"|url \"${URL}\"|" \
+            -e "s|sha256 \"[a-f0-9]*\"|sha256 \"${SHA}\"|" \
+            "$FORMULA_FILE"
+          rm -f "${FORMULA_FILE}.bak"
+
+          # Check if anything changed
+          if git diff --quiet "$FORMULA_FILE"; then
+            echo "no_change=true" >> $GITHUB_OUTPUT
+            echo "No changes - formula may already be at this version"
+          else
+            echo "no_change=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create branch and PR
+        if: steps.update.outputs.no_change != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          FORMULA="${{ steps.payload.outputs.formula }}"
+          VERSION="${{ steps.payload.outputs.version }}"
+          BRANCH="bump-${FORMULA}-${VERSION}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "${BRANCH}"
+          git add "Formula/${FORMULA}.rb"
+          git commit -m "Bump ${FORMULA} to ${VERSION}"
+          git push -u origin "${BRANCH}"
+
+          # Check for existing PR
+          EXISTING=$(gh pr list --head "${BRANCH}" --state open --json number -q '.[0].number' 2>/dev/null || true)
+          if [ -n "$EXISTING" ]; then
+            echo "PR already exists: #${EXISTING}"
+            gh pr view "$EXISTING" --web
+          else
+            gh pr create --fill \
+              --title "Bump ${FORMULA} to ${VERSION}" \
+              --body "Automated bump from release. Triggered via repository_dispatch."
+          fi
+
+      - name: Skip (no changes)
+        if: steps.update.outputs.no_change == 'true'
+        run: echo "Skipped - formula already at requested version"
