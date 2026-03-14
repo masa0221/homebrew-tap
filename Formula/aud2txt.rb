@@ -1,8 +1,8 @@
 class Aud2txt < Formula
-  desc "Shell script to transcribe audio files to text"
+  desc "Shell script to transcribe audio files to text (SRT, TXT, VTT)"
   homepage "https://github.com/masa0221/aud2txt"
-  url "https://github.com/masa0221/aud2txt/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "775cf07879dd5d94d636a2cd2f60a35ff420a9e9a1594bf17f8c55feacdd1e59"
+  url "https://github.com/masa0221/aud2txt/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "3302ea068f91756a9faca52c0c693bc548f393f77e327845eb86941bf643b2cd"
   license "Apache-2.0"
 
   depends_on "ffmpeg"
