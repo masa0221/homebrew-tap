@@ -32,6 +32,7 @@ brew install masa0221/tap/<formula>
 | [jclockedio](https://github.com/masa0221/jclockedio) | Clock in/out to Jobcan |
 | [mov2mp4](https://github.com/masa0221/mov2mp4) | Convert video files (.mov) to MP4 |
 | [oauth2-dev-tool](https://github.com/masa0221/oauth2-dev-tool) | OAuth 2.0 development tool |
+| [vimeo-vtt](https://github.com/masa0221/vimeo-vtt) | Download VTT captions from videos in a Vimeo folder |
 
 ## Upgrading
 
